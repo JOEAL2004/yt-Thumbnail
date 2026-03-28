@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeonSwap • AI Face Swap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="bg-orb bg-orb-left"></div>
+    <div class="bg-orb bg-orb-right"></div>
+
+    <main class="shell">
+      <header class="topbar glass">
+        <div class="brand">
+          <span class="brand-dot"></span>
+          <span>NeonSwap</span>
+        </div>
+        <nav class="nav-pill" aria-label="Primary">
+          <a href="#" aria-current="page">Home</a>
+          <a href="#swapForm">Studio</a>
+          <a href="#resultSection">Result</a>
+        </nav>
+      </header>
+
+      <section class="hero glass">
+        <p class="eyebrow">Gemini 3 Pro Image Preview</p>
+        <h1>One-click <span>AI Face Swap</span> for thumbnails</h1>
+        <p class="hero-copy">
+          Upload your target thumbnail and source portrait, then generate realistic, seamless face swaps in seconds.
+        </p>
+
+        <form id="swapForm" class="composer" novalidate>
+          <div class="field-grid">
+            <section class="upload-panel" data-drop-target="thumbnail">
+              <div class="panel-head">
+                <label for="thumbnail">Thumbnail (Target)</label>
+                <span class="badge">Image</span>
+              </div>
+              <input id="thumbnail" name="thumbnail" type="file" accept="image/*" required />
+              <p class="hint">Drop an image here or click to browse.</p>
+              <img id="thumbnailPreview" class="preview" alt="Thumbnail preview" hidden />
+            </section>
+
+            <section class="upload-panel" data-drop-target="portrait">
+              <div class="panel-head">
+                <label for="portrait">Portrait (Source Face)</label>
+                <span class="badge">Image</span>
+              </div>
+              <input id="portrait" name="portrait" type="file" accept="image/*" required />
+              <p class="hint">Use a clear frontal face for best blending.</p>
+              <img id="portraitPreview" class="preview" alt="Portrait preview" hidden />
+            </section>
+          </div>
+
+          <div class="textarea-wrap">
+            <label for="instructions">Extra Instructions (Optional)</label>
+            <textarea
+              id="instructions"
+              name="instructions"
+              rows="4"
+              placeholder="Example: Keep pose and lighting from thumbnail, cinematic contrast, preserve hair shape."
+            ></textarea>
+          </div>
+
+          <div class="action-row">
+            <button id="submitBtn" type="submit">Generate Face Swap</button>
+            <p class="tiny">Max upload size: 10MB per image • JPG/PNG/WEBP</p>
+          </div>
+        </form>
+
+        <div id="status" class="status" aria-live="polite"></div>
+
+        <div id="progressContainer" class="progress-wrap" hidden>
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+      </section>
+
+      <section id="resultSection" class="result glass" hidden>
+        <div class="result-head">
+          <h2>Generated Result</h2>
+          <a id="downloadLink" class="download-btn" download="face-swapped-image.png">Download</a>
+        </div>
+        <img id="resultImage" class="result-image" alt="Generated face-swapped result" />
+      </section>
+    </main>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
